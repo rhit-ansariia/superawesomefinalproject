@@ -1,0 +1,20 @@
+#!/bin/bash
+#PBS -N nn_train
+#PBS -l nodes=1:ppn=1
+#PBS -l walltime=00:15:00
+#PBS -o train_output.txt
+#PBS -e train_error.txt
+
+cd "$PBS_O_WORKDIR"
+
+echo "Job started on: $(date)"
+echo "Running on node: $(hostname)"
+echo "=========================================="
+
+# Trains the serial network and saves weights.npz in this folder.
+# Run "python3 mnist_data.py" on the login node first so the data is
+# already downloaded (jobs can't reach the internet).
+python3 train_serial.py
+
+echo "=========================================="
+echo "Job completed on: $(date)"

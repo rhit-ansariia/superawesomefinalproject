@@ -1,0 +1,73 @@
+Job started on: Wed Nov 11 16:54:43 EST 2026
+Job ID: 18432.grendel
+Job Name: nn_rows
+Working directory: /home/rameshr/superawesomefinalproject/Row
+Running on node: grendel-w1
+==========================================
+Running row split timing analysis (hidden width 32)...
+Generating baseline results...
+python3 timing_baseline.py baseline_32.csv 32 1 10 100 1000 10000 60000
+baseline  batch=     1  hidden=32  time=1.002e-05s
+baseline  batch=    10  hidden=32  time=1.397e-05s
+baseline  batch=   100  hidden=32  time=1.627e-04s
+baseline  batch=  1000  hidden=32  time=9.682e-04s
+baseline  batch= 10000  hidden=32  time=9.639e-03s
+baseline  batch= 60000  hidden=32  time=6.411e-02s
+Generating parallel results...
+ 1 procs  batch=     1  hidden=32  time=2.599e-05s  speedup=0.39x
+ 1 procs  batch=    10  hidden=32  time=3.146e-05s  speedup=0.44x
+ 1 procs  batch=   100  hidden=32  time=1.687e-04s  speedup=0.96x
+ 1 procs  batch=  1000  hidden=32  time=1.556e-03s  speedup=0.62x
+ 1 procs  batch= 10000  hidden=32  time=2.535e-02s  speedup=0.38x
+ 1 procs  batch= 60000  hidden=32  time=1.520e-01s  speedup=0.42x
+ 2 procs  batch=     1  hidden=32  time=2.924e-05s  speedup=0.34x
+ 2 procs  batch=    10  hidden=32  time=3.663e-05s  speedup=0.38x
+ 2 procs  batch=   100  hidden=32  time=1.336e-04s  speedup=1.22x
+ 2 procs  batch=  1000  hidden=32  time=1.042e-03s  speedup=0.93x
+ 2 procs  batch= 10000  hidden=32  time=1.688e-02s  speedup=0.57x
+ 2 procs  batch= 60000  hidden=32  time=1.019e-01s  speedup=0.63x
+ 4 procs  batch=     1  hidden=32  time=3.513e-05s  speedup=0.29x
+ 4 procs  batch=    10  hidden=32  time=4.756e-05s  speedup=0.29x
+ 4 procs  batch=   100  hidden=32  time=1.136e-04s  speedup=1.43x
+ 4 procs  batch=  1000  hidden=32  time=1.699e-03s  speedup=0.57x
+ 4 procs  batch= 10000  hidden=32  time=1.314e-02s  speedup=0.73x
+ 4 procs  batch= 60000  hidden=32  time=7.933e-02s  speedup=0.81x
+ 8 procs  batch=     1  hidden=32  time=3.085e-05s  speedup=0.32x
+ 8 procs  batch=    10  hidden=32  time=8.013e-05s  speedup=0.17x
+ 8 procs  batch=   100  hidden=32  time=1.307e-04s  speedup=1.25x
+ 8 procs  batch=  1000  hidden=32  time=6.924e-04s  speedup=1.40x
+ 8 procs  batch= 10000  hidden=32  time=1.105e-02s  speedup=0.87x
+ 8 procs  batch= 60000  hidden=32  time=7.315e-02s  speedup=0.88x
+12 procs  batch=     1  hidden=32  time=3.324e-05s  speedup=0.30x
+12 procs  batch=    10  hidden=32  time=9.096e-05s  speedup=0.15x
+12 procs  batch=   100  hidden=32  time=1.534e-04s  speedup=1.06x
+12 procs  batch=  1000  hidden=32  time=6.798e-04s  speedup=1.42x
+12 procs  batch= 10000  hidden=32  time=7.889e-03s  speedup=1.22x
+12 procs  batch= 60000  hidden=32  time=6.182e-02s  speedup=1.04x
+Combining results for analysis...
+python3 analyze_rows.py rows_hidden32_timing_results.csv
+
+==============================================================================================================
+ROW SPLIT TIMING SUMMARY (hidden width 32)
+==============================================================================================================
+Batch      Baseline    1 procs          2 procs          4 procs          8 procs          12 procs         
+           Time (s)    Time/Speedup     Time/Speedup     Time/Speedup     Time/Speedup     Time/Speedup     
+--------------------------------------------------------------------------------------------------------------
+1          1.0e-05     2.6e-05/0.39x    2.9e-05/0.34x    3.5e-05/0.29x    3.1e-05/0.32x    3.3e-05/0.30x    
+10         1.4e-05     3.1e-05/0.44x    3.7e-05/0.38x    4.8e-05/0.29x    8.0e-05/0.17x    9.1e-05/0.15x    
+100        1.6e-04     1.7e-04/0.96x    1.3e-04/1.22x    1.1e-04/1.43x    1.3e-04/1.25x    1.5e-04/1.06x    
+1000       9.7e-04     1.6e-03/0.62x    1.0e-03/0.93x    1.7e-03/0.57x    6.9e-04/1.40x    6.8e-04/1.42x    
+10000      9.6e-03     2.5e-02/0.38x    1.7e-02/0.57x    1.3e-02/0.73x    1.1e-02/0.87x    7.9e-03/1.22x    
+60000      6.4e-02     1.5e-01/0.42x    1.0e-01/0.63x    7.9e-02/0.81x    7.3e-02/0.88x    6.2e-02/1.04x    
+
+TIME BREAKDOWN AT BATCH 60000 (rank 0, seconds):
+----------------------------------------------------------------------
+Procs    Scatter        Compute        Gather         % comm    
+1        4.06e-02       1.11e-01       2.11e-04       26.9      
+2        4.63e-02       5.42e-02       8.25e-04       46.5      
+4        5.18e-02       2.69e-02       7.14e-04       66.1      
+8        5.88e-02       1.37e-02       7.43e-04       81.3      
+12       5.02e-02       8.85e-03       8.12e-04       85.2      
+Plot saved to rows_hidden32_timing_results_analysis.png
+==========================================
+Job completed on: Wed Nov 11 16:55:33 EST 2026

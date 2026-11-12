@@ -1,0 +1,17 @@
+Job started on: Wed Nov 11 16:48:05 EST 2026
+Running on node: grendel-w1
+==========================================
+epoch 1: loss 0.4963 | train acc 0.9392 | test acc 0.9370
+epoch 2: loss 0.1962 | train acc 0.9536 | test acc 0.9512
+epoch 3: loss 0.1513 | train acc 0.9625 | test acc 0.9599
+epoch 4: loss 0.1257 | train acc 0.9673 | test acc 0.9629
+epoch 5: loss 0.1097 | train acc 0.9709 | test acc 0.9637
+epoch 6: loss 0.0970 | train acc 0.9731 | test acc 0.9646
+epoch 7: loss 0.0885 | train acc 0.9737 | test acc 0.9649
+epoch 8: loss 0.0819 | train acc 0.9744 | test acc 0.9633
+epoch 9: loss 0.0772 | train acc 0.9749 | test acc 0.9635
+epoch 10: loss 0.0737 | train acc 0.9762 | test acc 0.9629
+saved weights to /mnt/home/rameshr/superawesomefinalproject/Serial Code/weights.npz
+serial forward pass: 0.0184 s for 10000 images, accuracy 0.9629
+==========================================
+Job completed on: Wed Nov 11 16:48:16 EST 2026

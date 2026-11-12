@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N nn_tests
+#PBS -l nodes=1:ppn=8
+#PBS -l walltime=00:10:00
+#PBS -j oe
+
+cd $PBS_O_WORKDIR             # this will be the Row folder
+
+module load python openmpi
+source ../venv/bin/activate   # venv is one folder up, at the top of the repo
+
+for n in 1 2 3 4 7 8; do
+    mpiexec -n $n python test_correctness.py || echo "FAILED at n=$n"
+done

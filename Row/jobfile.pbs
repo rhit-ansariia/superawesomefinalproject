@@ -1,0 +1,33 @@
+#!/bin/bash
+#PBS -N nn_rows
+#PBS -l nodes=1:ppn=12
+#PBS -l walltime=00:30:00
+#PBS -o output.txt
+#PBS -e error.txt
+
+cd $PBS_O_WORKDIR
+      
+
+# Print some job information
+echo "Job started on: $(date)"
+echo "Job ID: $PBS_JOBID"
+echo "Job Name: $PBS_JOBNAME"
+echo "Working directory: $PWD"
+echo "Running on node: $(hostname)"
+echo "=========================================="
+
+# =====
+# Uncomment the one you're working on, leave the others commented.
+# =====
+
+# > Correctness tests at every process count
+#make test
+
+# > Timing with the trained network's size (784 -> 32 -> 10)
+make time
+
+# > Timing with a wide hidden layer (784 -> 1024 -> 10)
+make time_wide
+
+echo "=========================================="
+echo "Job completed on: $(date)"

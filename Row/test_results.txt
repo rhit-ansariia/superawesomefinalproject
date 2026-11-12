@@ -1,0 +1,93 @@
+Job started on: Wed Nov 11 16:51:08 EST 2026
+Job ID: 18430.grendel
+Job Name: nn_rows
+Working directory: /home/rameshr/superawesomefinalproject/Row
+Running on node: grendel-w1
+==========================================
+=== 1 process(es) ===
+Running tests with 1 process(es)
+
+PASS  row_partition
+PASS  broadcast_net
+PASS  scores: even split  (batch=8)
+PASS  scores: uneven split  (batch=11)
+PASS  scores: fewer images than processes  (batch=1)
+PASS  scores: one image  (batch=1)
+PASS  scores: prime batch size  (batch=97)
+PASS  scores: one layer  (batch=50)
+PASS  scores: deep network  (batch=40)
+PASS  scores: wide layer  (batch=32)
+PASS  MNIST: same prediction for every image  (0 of 10000 are different)
+PASS  MNIST: same accuracy  (serial 0.9629, parallel 0.9629)
+
+ALL TESTS PASSED
+=== 2 process(es) ===
+Running tests with 2 process(es)
+
+PASS  row_partition
+PASS  broadcast_net
+PASS  scores: even split  (batch=16)
+PASS  scores: uneven split  (batch=19)
+PASS  scores: fewer images than processes  (batch=1)
+PASS  scores: one image  (batch=1)
+PASS  scores: prime batch size  (batch=97)
+PASS  scores: one layer  (batch=50)
+PASS  scores: deep network  (batch=40)
+PASS  scores: wide layer  (batch=32)
+PASS  MNIST: same prediction for every image  (0 of 10000 are different)
+PASS  MNIST: same accuracy  (serial 0.9629, parallel 0.9629)
+
+ALL TESTS PASSED
+=== 4 process(es) ===
+Running tests with 4 process(es)
+
+PASS  row_partition
+PASS  broadcast_net
+PASS  scores: even split  (batch=32)
+PASS  scores: uneven split  (batch=35)
+PASS  scores: fewer images than processes  (batch=3)
+PASS  scores: one image  (batch=1)
+PASS  scores: prime batch size  (batch=97)
+PASS  scores: one layer  (batch=50)
+PASS  scores: deep network  (batch=40)
+PASS  scores: wide layer  (batch=32)
+PASS  MNIST: same prediction for every image  (0 of 10000 are different)
+PASS  MNIST: same accuracy  (serial 0.9629, parallel 0.9629)
+
+ALL TESTS PASSED
+=== 8 process(es) ===
+Running tests with 8 process(es)
+
+PASS  row_partition
+PASS  broadcast_net
+PASS  scores: even split  (batch=64)
+PASS  scores: uneven split  (batch=67)
+PASS  scores: fewer images than processes  (batch=7)
+PASS  scores: one image  (batch=1)
+PASS  scores: prime batch size  (batch=97)
+PASS  scores: one layer  (batch=50)
+PASS  scores: deep network  (batch=40)
+PASS  scores: wide layer  (batch=32)
+PASS  MNIST: same prediction for every image  (0 of 10000 are different)
+PASS  MNIST: same accuracy  (serial 0.9629, parallel 0.9629)
+
+ALL TESTS PASSED
+=== 12 process(es) ===
+Running tests with 12 process(es)
+
+PASS  row_partition
+PASS  broadcast_net
+PASS  scores: even split  (batch=96)
+PASS  scores: uneven split  (batch=99)
+PASS  scores: fewer images than processes  (batch=11)
+PASS  scores: one image  (batch=1)
+PASS  scores: prime batch size  (batch=97)
+PASS  scores: one layer  (batch=50)
+PASS  scores: deep network  (batch=40)
+PASS  scores: wide layer  (batch=32)
+PASS  MNIST: same prediction for every image  (0 of 10000 are different)
+PASS  MNIST: same accuracy  (serial 0.9629, parallel 0.9629)
+
+ALL TESTS PASSED
+==========================================
+Job completed on: Wed Nov 11 16:51:17 EST 2026

@@ -1,0 +1,7 @@
+We will be splitting the inputs in our row-based approach.
+
+mpi - splitting inputs
+
+MNIST thing uses ReLU where Row 0 of the output only uses Row 0 of the input so Image 1 has nothing to do with Image 2, which means that images can be cut into chunks where each process can work on its own chunk with no help from the others and the answers can be stacked back together.
+
+nn_rows_mpi.py speeds up our neural network by splitting the images across several processes. Each image is one row of the input matrix, and the network’s answer for an image depends only on that image, so the images can be handled separately. First, rank 0 broadcasts the trained weights so every process has a full copy of the network. Then rank 0 uses Scatterv to hand each process its own chunk of rows; the “v” version allows uneven chunks when the number of images doesn’t divide evenly. Each process runs our original serial forward pass on just its chunk, with no communication between layers, which is where the speedup comes from. Finally, Gatherv collects every process’s answers back on rank 0 in the original order, and argmax turns the scores into predicted digits. The processes only communicate at the start and the end, every process joins every MPI call so nothing deadlocks, and the only trade-off is that each process stores its own copy of the weights. 
