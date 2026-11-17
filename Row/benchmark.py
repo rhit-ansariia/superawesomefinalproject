@@ -47,7 +47,6 @@ total = args.images if args.mode == "strong" else args.images * size
 sizes = [784] + [args.hidden] * args.layers + [10]
 
 
-# setup (rank 0 only)
 # only rank 0 makes the network and loads the images.
 # everyone else gets theirs later through MPI.
 net, X, source = None, None, None
