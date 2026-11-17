@@ -98,7 +98,7 @@ def scatter_rows(X, comm, root=0):
     """
     rank, size = comm.Get_rank(), comm.Get_size()
 
-    # Everyone needs to know the size of X to work out the split.
+    # Everyone needs to know the size of X to work out the split
     shape = X.shape if rank == root else None
     n_rows, n_cols = comm.bcast(shape, root=root)
 
@@ -133,7 +133,7 @@ def parallel_scores(net, X, comm, root=0, timings=None):
 
     Every process must already have the network (use broadcast_net first).
     Only rank 0 needs X. Rank 0 gets back the scores; others get None.
-    If you pass a dict as `timings`, it records how long each step took.
+    If you pass a dict as timings, it records how long each step took.
     """
     n_out = get_weights(net)[-1][0].shape[1]   # number of outputs (10 digits)
 
@@ -144,7 +144,7 @@ def parallel_scores(net, X, comm, root=0, timings=None):
     if X_local.shape[0] > 0:
         Y_local = net.predict_scores(X_local)                  # 2. run our normal network
     else:
-        Y_local = np.empty((0, n_out), dtype=np.float64)       #    (no images = no work)
+        Y_local = np.empty((0, n_out), dtype=np.float64)       
     t2 = MPI.Wtime()
 
     Y = gather_rows(Y_local, counts, starts, n_out, comm, root)  # 3. collect answers

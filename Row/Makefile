@@ -1,6 +1,5 @@
-# ============================================================================
+
 # Row Split Neural Network - Makefile
-# ============================================================================
 
 # Python and MPI commands. Change these if your cluster uses different names
 # (for example MPIEXEC = mpirun).
@@ -24,9 +23,8 @@ BATCH_SIZES = 1 10 100 1000 10000 60000
 HIDDEN      = 32
 WIDE_HIDDEN = 1024
 
-# ================
 # Targets
-# ================
+
 
 help:
 	@echo "============================================================================"

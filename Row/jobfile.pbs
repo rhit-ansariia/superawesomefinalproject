@@ -16,9 +16,7 @@ echo "Working directory: $PWD"
 echo "Running on node: $(hostname)"
 echo "=========================================="
 
-# =====
-# Uncomment the one you're working on, leave the others commented.
-# =====
+
 
 # > Correctness tests at every process count
 #make test

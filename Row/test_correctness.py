@@ -3,7 +3,7 @@ Tests to make sure our parallel network gives the same answers as the
 serial one.
 
 Put this in the Row folder next to nn_rows_mpi.py and run it with a few
-different process counts (odd ones too):
+different process counts:
 
     for n in 1 2 3 4 7; do mpiexec -n $n python test_correctness.py; done
 
@@ -26,14 +26,14 @@ import numpy as np
 from mpi4py import MPI
 
 # nn_rows_mpi adds the Serial Code folder to the path when we import it,
-# so the nn_model and mnist_data imports below work.
+# so the nn_model and mnist_data imports below work
 from nn_rows_mpi import (row_partition, broadcast_net, parallel_scores,
                          parallel_predict, WEIGHTS_PATH)
 from nn_model import get_weights, net_from_weights, load_weights
 from mnist_data import load_mnist
 
 # How close the scores have to be. Splitting the rows up can change the
-# last few decimal places a tiny bit, so we don't check for exact equality.
+# last few decimal places a tiny bit, so we don't check for exact equality
 RTOL, ATOL = 1e-10, 1e-12
 
 

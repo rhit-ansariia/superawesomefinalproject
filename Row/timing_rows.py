@@ -12,8 +12,7 @@ Sending the network to every process (broadcast_net) happens once before
 timing starts, the same way you'd load a model once and then run it on
 lots of batches. So it isn't counted in the times.
 
-It also saves how long scatter, compute and gather took separately (on
-rank 0), so we can see how much of the time is communication.
+It also saves how long scatter, compute and gather took separately, so we can see how much of the time is communication.
 """
 import sys
 import csv
