@@ -1,6 +1,6 @@
 # How to Run
 
-Our code is in Python (NumPy + mpi4py), so there's nothing to compile. Everything runs through the Makefile in "Row/", and the ".pbs" files submit it to the cluster with "qsub", same as the labs.
+Our code is in Python (NumPy + mpi4py), so there's nothing to compile. Everything runs through the Makefile in "Row/" or "Column/", and the ".pbs" files submit it to the cluster with "qsub", same as the labs.
 
 Run everything from the "Row/" folder or from the Columns/ folder.
 
@@ -49,10 +49,15 @@ make time         # 784 -> 32 -> 10 (the trained network)
 make time_wide    # 784 -> 1024 -> 10 (wider hidden layer)
 ```
 
-Each one times the serial baseline and then the row-parallel version at 1, 2, 4, 8, and 12 processes, for batch sizes 1, 10, 100, 1000, 10000, and 60000 images. The results are combined into one CSV, and "analyze_rows.py" makes the speedup plot.
+Each one times the serial baseline and then the row-parallel (or column-parallel is that was chosen) version at 1, 2, 4, 8, and 12 processes, for batch sizes 1, 10, 100, 1000, 10000, and 60000 images. The results are combined into one CSV, and "analyze_rows.py" makes the speedup plot.
 
+for row-parallel version:
 - "make time" writes "rows_hidden32_timing_results.csv" and its plot
 - "make time_wide" writes "rows_hidden1024_timing_results.csv" and its plot
+
+for column-parallel version:
+- "make time" writes "cols_hidden32_timing_results.csv" and its plot
+- "make time_wide" writes "cols_hidden1024_timing_results.csv" and its plot
 
 "jobfile.pbs" runs both on one node with 12 cores.
 
@@ -61,7 +66,7 @@ The Makefile sets OMP_NUM_THREADS, OPENBLAS_NUM_THREADS, and MKL_NUM_THREADS to 
 ## Other commands
 
 - "make help" lists the targets
-- "make clean" deletes all the CSVs and PNGs in "Row/"
+- "make clean" deletes all the CSVs and PNGs in "Row/" or "Column/"
 
 You can change the process counts or batch sizes from the command line, for example:
 
