@@ -6,7 +6,22 @@
 #PBS -e error.txt
 
 cd $PBS_O_WORKDIR
-      
+
+# make sure the job can find mpi
+export PATH=/opt/openmpi/bin:$PATH
+export LD_LIBRARY_PATH=/opt/openmpi/lib:$LD_LIBRARY_PATH
+
+# quick check that everything's actually there
+echo "python3: $(which python3)"
+echo "mpiexec: $(which mpiexec)"
+python3 -c "import numpy; print('numpy ok')"
+python3 -c "from mpi4py import MPI; print('mpi4py ok')"
+
+
+
+# load mpi so mpiexec and mpi4py work on the compute node
+# source ~/venv/bin/activate   # if you're using a venv
+
 
 # Print some job information
 echo "Job started on: $(date)"
@@ -21,13 +36,13 @@ echo "=========================================="
 # =====
 
 # > Correctness tests at every process count
-make test
+#make test
 
 # > Timing with the trained network's size (784 -> 32 -> 10)
 #make time
 
 # > Timing with a wide hidden layer (784 -> 1024 -> 10)
-#make time_wide
+make time_wide
 
 echo "=========================================="
 echo "Job completed on: $(date)"

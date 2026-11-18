@@ -29,7 +29,7 @@ def create_plots(df, output_prefix):
     proc_counts = sorted(parallel['processes'].unique())
 
     fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(15, 12))
-    fig.suptitle(f'Row Split Forward Pass Performance (784 → {hidden} → 10 network)',
+    fig.suptitle(f'Column Split Forward Pass Performance (784 → {hidden} → 10 network)',
                  fontsize=16, fontweight='bold')
 
     # Plot 1: time vs batch size
@@ -38,7 +38,7 @@ def create_plots(df, output_prefix):
     for i, p in enumerate(proc_counts):
         d = parallel[parallel['processes'] == p]
         ax1.loglog(d['batch_size'], d['time_seconds'], marker='o',
-                   color=COLORS[i % len(COLORS)], label=f'Row split ({p} process{"es" if p > 1 else ""})')
+                   color=COLORS[i % len(COLORS)], label=f'Column split ({p} process{"es" if p > 1 else ""})')
     ax1.set_xlabel('Batch Size (images)')
     ax1.set_ylabel('Time (seconds)')
     ax1.set_title('Execution Time vs Batch Size')
@@ -67,7 +67,7 @@ def create_plots(df, output_prefix):
     strong = one_time / big['time_seconds']
 
     ax3.plot(big['processes'], strong, marker='o', linewidth=2, markersize=8, color='red',
-             label='Row split')
+             label='Column split')
     ax3.plot(big['processes'], big['processes'], linestyle='--', alpha=0.5, color='black',
              label='Ideal linear speedup')
     ax3.set_xlabel('Number of Processes')
@@ -103,7 +103,7 @@ def print_summary_table(df):
     proc_counts = sorted(parallel['processes'].unique())
 
     print("\n" + "=" * 110)
-    print(f"ROW SPLIT TIMING SUMMARY (hidden width {int(df['hidden'].iloc[0])})")
+    print(f"COLUMN SPLIT TIMING SUMMARY (hidden width {int(df['hidden'].iloc[0])})")
     print("=" * 110)
     header = f"{'Batch':<10} {'Baseline':<12}" + "".join(f"{f'{p} procs':<17}" for p in proc_counts)
     print(header)
@@ -132,7 +132,7 @@ def print_summary_table(df):
 
 def main():
     if len(sys.argv) != 2:
-        print("Usage: python3 analyze_rows.py <input.csv>")
+        print("Usage: python3 analyze_cols.py <input.csv>")
         sys.exit(1)
     csv_file = sys.argv[1]
     df = pd.read_csv(csv_file)
