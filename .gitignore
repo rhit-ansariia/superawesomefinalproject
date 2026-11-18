@@ -1,2 +1,4 @@
 __pycache__/
 Serial Code/data/*.gz
+Column/output.txt
+Column/error.txt
